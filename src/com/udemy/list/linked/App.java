@@ -9,5 +9,9 @@ public class App {
         list.insert("Test4");
 
         list.traverseList();
+        list.reverseRec();
+        System.out.println();
+        list.traverseList();
+
     }
 }

@@ -46,6 +46,35 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         }
     }
 
+    public void reverseRec() {
+        root = reverseRec(root, null);
+    }
+
+    private Node<T> reverseRec(Node<T> head, Node<T> prev) {
+        if(head == null) {
+            return prev;
+        }
+        Node<T> next = head.getNextNode();
+        head.setNextNode(prev);
+        return reverseRec(next, head);
+    }
+
+    /**
+     *              A    ->    B   ->   C   ->   D
+     *   prev      curr      next
+     */
+    public void reverseIter() {
+        Node<T> prev = null;
+        Node<T> current = root;
+        while (current != null) {
+            Node<T> next = current.getNextNode();
+            current.setNextNode(prev);
+            prev = current;
+            current = next;
+        }
+        root = prev;
+    }
+
     private void remove(T dataToRemove, Node<T> previousNode, Node<T> actualNode) {
         while (actualNode != null) {
             if (actualNode.getData().compareTo(dataToRemove) == 0) {
